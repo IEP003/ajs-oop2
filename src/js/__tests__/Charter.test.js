@@ -1,23 +1,24 @@
 import Charter from "../Charter";
 
-test ('Charter', () => {
+test ('Проверка создания персонажа', () => {
     const result = new Charter('Леголас', 'Bowerman');
-    expect(result.name).toBe('Леголас'),
-    expect(result.type).toBe('Bowerman'),
-    expect(result.health).toBe(100),
-    expect(result.level).toBe(1);
-})
-
-test ('checkName', () => {
-    function result(){
-       return new Charter('v', 'Zombie')
-    } 
-    expect(result).toThrow()
-})
-
-test ('checkType', () => {
-    function result(){
-        return new Charter('Granny', 'Grandmother')
+    const expected = {
+        name: 'Леголас',
+        type: 'Bowerman',
+        health: 100,
+        level: 1
     }
-    expect(result).toThrow()
+    expect(result).toEqual(expected);
+})
+
+test ('Проверка на корректное имя', () => {
+    expect(() => {
+        return new Charter('v', 'Zombie');
+    }).toThrow()
+})
+
+test ('Проверка на корректный тип', () => {
+    expect(() => {
+        return new Charter('Granny', 'Grandmother');
+    }).toThrow()
 })
